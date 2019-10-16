@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../node_modules/_bootstrap@3.4.1@bootstrap/dist/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container" id="box">
+        <form role="form">
+            <div class="form-group">
+                <label for="username">用户名：</label><br />
+                <input type="text" class="form-control" v-model="userName" id="username" placeholder="请输入用户名!">
+            </div>
+            <div class="form-group">
+                <label for="password">密码：</label><br />
+                <input type="password" class="form-control" v-model="passWord" id="password" placeholder="请输入密码!">
+            </div>
+            <div class="form-group text-center">
+                <button type="button" class="btn btn-primary" @click="addUser">添加</button>
+                <button type="reset" class="btn btn-danger" @click="doReset">重置</button>
+            </div>
+        </form><br><br>
+        <table class="table table-bordered table-hover">
+            <caption class="h3 text-center text-muted">用户信息表</caption>
+            <thead>
+                <tr class="text-danger text-center">
+                    <td>编号</td>
+                    <td>用户名</td>
+                    <td>密码</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center" v-for="(item,index) of list" v-bind:key="item.id">
+                    <td>{{item.id}}</td>
+                    <td>{{item.username}}</td>
+                    <td>{{item.password}}</td>
+                    <td><button class="btn btn-danger" @click="delThis(index)">{{item.delet}}</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="text-center" v-show="isShow">暂无数据.......</td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="text-right"><button type="button" class="btn btn-danger btn-sm" @click="delAll">删除全部</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <script src="../node_modules/_vue@2.6.10@vue/dist/vue.min.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>
